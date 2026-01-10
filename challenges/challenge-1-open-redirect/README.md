@@ -5,7 +5,7 @@ This Challenge demonstrates an open redirect vulnerability in Flask and how Semg
 ## Files
 - redirect.yaml – Semgrep taint rule (user input → redirect sink)
 - vuln.py – Vulnerable open redirect
-- safe_app.py – Secure redirect using server-side allowlist
+- sol.py – Secure redirect using server-side allowlist
 
 ## Run
 semgrep --config redirect.yaml .
