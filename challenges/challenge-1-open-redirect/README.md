@@ -1,6 +1,6 @@
 # Flask Open Redirect – Challenge 1
 
-This repo demonstrates an open redirect vulnerability in Flask and how Semgrep taint analysis detects it.
+This Challenge demonstrates an open redirect vulnerability in Flask and how Semgrep taint analysis detects it.
 
 ## Files
 - redirect.yaml – Semgrep taint rule (user input → redirect sink)
