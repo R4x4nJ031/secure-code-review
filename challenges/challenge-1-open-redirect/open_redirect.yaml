@@ -1,0 +1,12 @@
+rules:
+  - id: flask-open-redirect-taint
+    languages: [python]
+    severity: ERROR
+    message: User-controlled input flows into redirect()
+    mode: taint
+
+    pattern-sources:
+      - pattern: request.$SRC.get(...)
+
+    pattern-sinks:
+      - pattern: redirect(...)
