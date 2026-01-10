@@ -12,6 +12,6 @@ semgrep --config redirect.yaml .
 
 ## Expected
 - vuln.py → finding
-- safe_app.py → no findings
+- sol.py → no findings
 
 Key idea: user input is tainted; if it reaches redirect(), it’s a vulnerability.
