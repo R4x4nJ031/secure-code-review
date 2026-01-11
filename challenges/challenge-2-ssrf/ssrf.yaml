@@ -1,0 +1,19 @@
+rules:
+  - id: express-axios-ssrf-taint
+    languages: [javascript]
+    severity: ERROR
+    message: User-controlled input flows into axios request (possible SSRF)
+    mode: taint
+
+    pattern-sources:
+      - pattern: req.query.$X
+      - pattern: req.body.$X
+      - pattern: req.params.$X
+
+    pattern-sinks:
+      - pattern: axios.get(...)
+      - pattern: axios.post(...)
+      - pattern: axios.request(...)
+    
+    pattern-sanitizers:
+      - pattern: "https://internal-app/${...}"
