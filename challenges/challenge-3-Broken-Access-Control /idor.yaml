@@ -1,0 +1,14 @@
+rules:
+  - id: flask-idor-shape
+    languages: [python]
+    severity: WARNING
+    message: "Possible IDOR: user-controlled username used to fetch and update profile."
+    metadata:
+      category: security
+      cwe: "CWE-639"
+    pattern: |
+      $ID = request.form.get(...)
+      ...
+      $PROFILE = $SVC.get_user_profile($ID)
+      ...
+      $SVC.update_user_profile($PROFILE)
