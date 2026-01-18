@@ -1,0 +1,18 @@
+rules:
+  - id: express-cors-reflect-origin-with-credentials
+    languages: [javascript]
+    severity: ERROR
+    message: "CORS misconfig: reflects Origin and allows credentials (data can be read cross-site)."
+    metadata:
+      category: security
+      cwe: "CWE-942"
+      owasp: "A01:2021 - Broken Access Control"
+      references:
+        - "https://portswigger.net/web-security/cors/access-control-allow-origin"
+    patterns:
+      - pattern: |
+          $ORIGIN = $REQ.get("Origin");
+          ...
+          $RES.header("Access-Control-Allow-Origin", $ORIGIN);
+          ...
+          $RES.header("Access-Control-Allow-Credentials", "true");
