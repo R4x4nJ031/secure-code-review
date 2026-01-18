@@ -1,0 +1,13 @@
+rules:
+  - id: java-sqli-jdbctemplate-orderby-concat
+    languages: [java]
+    severity: ERROR
+    message: "SQLi risk: request param concatenated into ORDER BY and executed via JdbcTemplate."
+    metadata:
+      category: security
+      cwe: "CWE-89"
+    patterns:
+      - pattern: |
+          String $Q = "SELECT * FROM users ORDER BY " + $ORDER;
+      - pattern: |
+          $J.queryForList($Q);
