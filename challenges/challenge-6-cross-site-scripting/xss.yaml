@@ -1,0 +1,14 @@
+rules:
+  - id: go-reflected-xss-fmt-sprintf
+    languages: [go]
+    severity: ERROR
+    message: "Possible reflected XSS: untrusted query param inserted into HTML via fmt.Sprintf."
+    metadata:
+      category: security
+      cwe: "CWE-79"
+    pattern: |
+      $X := $R.URL.Query().Get(...)
+      ...
+      $RESP := fmt.Sprintf($HTML, $X)
+      ...
+      fmt.Fprint($W, $RESP)
