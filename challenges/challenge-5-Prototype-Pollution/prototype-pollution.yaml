@@ -1,0 +1,17 @@
+rules:
+  - id: js-prototype-pollution-merge-forin
+    message: "Possible prototype pollution: for-in copying arbitrary keys into target."
+    severity: ERROR
+    languages: [javascript, typescript]
+    metadata:
+      cwe: "CWE-1321"
+      category: security
+    patterns:
+      - pattern-inside: |
+          function $MERGE($T, $S) {
+            ...
+          }
+      - pattern: |
+          for (let $K in $S) {
+            $T[$K] = $S[$K];
+          }
