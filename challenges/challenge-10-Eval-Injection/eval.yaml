@@ -1,0 +1,11 @@
+rules:
+  - id: node-eval-detect
+    languages: [javascript]
+    message: Dangerous use of eval() (possible RCE if input is user-controlled)
+    severity: ERROR
+
+    pattern: eval($X)
+
+    metadata:
+      category: security
+      vulnerability: remote-code-execution

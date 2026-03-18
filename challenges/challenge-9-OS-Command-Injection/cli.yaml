@@ -1,0 +1,12 @@
+rules:
+  - id: go-sh-c-command-injection
+    languages: [go]
+    message: Avoid using 'sh -c' with exec.Command (possible command injection)
+    severity: ERROR
+
+    pattern: exec.Command("sh", "-c", ...)
+
+    metadata:
+      category: security
+      technology: go
+      vulnerability: command-injection
